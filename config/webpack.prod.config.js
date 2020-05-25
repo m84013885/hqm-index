@@ -18,7 +18,7 @@ const config = webpackMerge(commonConfig, {
     path: outputPath,
     chunkFilename: assestPathName + `/[name].[chunkhash:5].js`,
     publicPath: '',
-    filename: assestPathName + `/[name].js`
+    filename: assestPathName + `/[name].[chunkhash:5].js`
   },
   optimization: {
     minimizer: [

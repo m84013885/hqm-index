@@ -6,10 +6,13 @@ import _fetch from '../../utils/fetch'
 import { Toast, Svga, Mask, Loading, Img } from '../../common/index'
 import { useClientRect, useInterval } from './useCommon'
 
+import Header from './header'
+
 const Main = () => {
     return (
         <React.Fragment>
             <div className={style.scrollView}>
+                <Header />
                 {/* something */}
             </div>
             <Loading />
