@@ -1,0 +1,79 @@
+.fontSizeS{
+    font-size:16px;
+}
+.fontSizeM{
+    font-size:27px;
+}
+.fontSizeL{
+    font-size:38px;
+}
+@media screen and (min-width: 768px) {
+    .fontSizeS{
+        font-size:22px;
+    }
+    .fontSizeM{
+        font-size:33px;
+    }
+    .fontSizeL{
+        font-size:44px;
+    }
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+}
+.timeLine{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0;
+    width: 130px;
+    background-color: #dddddd;
+}
+.timeLineText{
+    position: relative;
+    z-index: 1;
+    color: #9a9a9a;
+    font-weight: 700;
+
+    -webkit-font-smoothing: antialiased;
+}
+.timeLineText1{
+    z-index: 2;
+    margin-left: 10px;
+
+    composes:timeLineText;
+}
+.timeLine::before{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #e4e4e4;
+    content: '';
+}
+.timeLine::after{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url(../../../assets/about/overlay.png);
+    background-position: 0 0;
+    background-size: 2px 2px;
+    content: '';
+}
+.list{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    height: 40px;
+    color: #333333;
+}

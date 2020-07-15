@@ -1,0 +1,12 @@
+aside{
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    margin: 36px auto 0 auto;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-image: url(../../assets/index.jpg);
+    background-size: cover;
+}

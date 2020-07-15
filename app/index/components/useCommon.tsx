@@ -1,6 +1,8 @@
 import * as React from "react"
 import { useEffect, useState, useCallback, useMemo, useReducer, useRef } from "react"
 
+window.timer = []
+
 // 查看元素位置与长宽高
 function useClientRect() {
     const [rect, setRect] = useState(null);
@@ -22,8 +24,7 @@ function useInterval(callback: any, delay: number) {
             saveCallback.current()
         }
         if (delay !== null) {
-            const timer = setInterval(tick, delay)
-            return () => clearInterval(timer)
+            window.timer.push(setInterval(tick, delay))
         }
     }, [])
 }

@@ -2,11 +2,13 @@ import * as React from 'react'
 import { useState, useEffect } from 'react'
 import * as style from "./index.css"
 
-const Header = () => {
+import About from './about'
+
+const Content = () => {
   return (
-    <div>
-      
-    </div>
+    <main>
+      <About />
+    </main>
   )
 }
-export default Header
+export default Content
