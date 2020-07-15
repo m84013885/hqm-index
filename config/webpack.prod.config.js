@@ -1,11 +1,11 @@
 const commonConfig = require('./webpack.common.config')
 const webpackMerge = require('webpack-merge')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin')
 const process = require('process')
 const nodeModuleDir = path.resolve(process.cwd(), 'node_module')
 const appDir = path.resolve(process.cwd(), 'app')
@@ -20,51 +20,15 @@ const config = webpackMerge(commonConfig, {
     publicPath: '',
     filename: assestPathName + `/[name].[chunkhash:5].js`
   },
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-        uglifyOptions: {
-          compress: { drop_console: true },
-          output: { comments: false }
-        }
-      }),
-      new OptimizeCSSAssetsPlugin({})
-    ],
-    // runtimeChunk: { name: 'runtime' },
-    splitChunks: {
-      chunks: 'all',
-      cacheGroups: {
-        vendors: {
-          name: 'vendors',
-          test: /[\/]node_modules[\/]/,
-          priority: -10
-        },
-        default: {
-          name: 'default',
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        }
-      }
-    }
-  },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: assestPathName + `/[name].[chunkhash:5].css` }),
-    // new HtmlWebpackPlugin({
-    //   filename: `index.html`,
-    //   title: `demo`,
-    //   template: path.join(appDir, 'app.html'),
-    //   minify: {
-    //     collapseWhitespace: true,
-    //     conservativeCollapse: true
-    //   },
-    //   inject: true,
-    //   chunks: ['vendors', 'default', 'app']
-    // })
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(process.cwd(), 'dll/dll.js'), to: path.join(outputPath, assestPathName) }
+      ]
+    }),
+    new OptimizeCSSAssetsPlugin({})
   ],
   module: {
     rules: [
@@ -111,13 +75,16 @@ routers.map((item) => {
   const tempSrc = path.join(appDir, `./${item}/index.html`)
   const plugin = new HtmlWebpackPlugin({
     filename: `${item}.html`,
-    title: 'demo',
+    dll: `${assestPathName}/dll.js`,
     template: tempSrc,
     inject: true,
-    chunks: ['manifest', 'vendors', item]
+    chunks: [item],
+    minify: {
+      collapseWhitespace: true,//删除空格、换行
+    },
   })
   config.entry[item] = [path.resolve(appDir, `./${item}/index.tsx`)]
-  config.plugins.splice(-1, 0, plugin)
+  config.plugins.push(plugin)
 })
 
 module.exports = config

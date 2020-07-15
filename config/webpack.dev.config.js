@@ -13,7 +13,7 @@ const { routers } = require('../router.json')
 const config = webpackMerge(commonConfig, {
   mode: 'development',
   devServer: {
-    contentBase: path.resolve(process.cwd(), 'build'),
+    contentBase: path.resolve(process.cwd(), 'dll'),
     compress: true,
     port,
     host,
@@ -78,7 +78,7 @@ routers.map((item) => {
   const tempSrc = path.join(appDir, `./${item}/index.html`)
   const plugin = new HtmlWebpackPlugin({
     filename: `${item}`,
-    title: 'demo',
+    dll: `/dll.js`,
     template: tempSrc,
     inject: true,
     chunks: [item]
