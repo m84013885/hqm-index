@@ -2,7 +2,7 @@
     font-size:16px;
 }
 .fontSizeM{
-    font-size:27px;
+    font-size:24px;
 }
 .fontSizeL{
     font-size:38px;
@@ -12,7 +12,7 @@
         font-size:22px;
     }
     .fontSizeM{
-        font-size:33px;
+        font-size:30px;
     }
     .fontSizeL{
         font-size:44px;
@@ -23,19 +23,22 @@
     display: flex;
     flex-direction: column;
 }
+.header{
+    display: flex;
+    align-items: center;
+}
 .timeLine{
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
     padding: 5px 0;
     width: 130px;
-    background-color: #dddddd;
 }
 .timeLineText{
     position: relative;
     z-index: 1;
-    color: #9a9a9a;
     font-weight: 700;
 
     -webkit-font-smoothing: antialiased;
@@ -70,10 +73,111 @@
     background-size: 2px 2px;
     content: '';
 }
+.name{
+    margin-right: 20px;
+}
 .list{
     display: flex;
     align-items: center;
+    height: 70px;
+    border-top: 1px solid #000000;
+}
+.listTitle{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 5px 0;
+    width: 130px;
+    height: 100%;
+}
+.listContent{
+    composes:listTitle;
+}
+.listTarget{
+    composes:listTitle;
+}
+.listContentText{
+    z-index: 1;
+    text-align: center;
+}
+.listContentColor{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10%;
+    height: 100%;
+}
+.powerTagBox{
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #000000;
+}
+.powerTagToast{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     padding: 10px 20px;
+    height: 30px;
+}
+.powerTagToastBox{
+    margin-left: 10px;
+    width: 15px;
+    height: 15px;
+}
+.powerTagToastText{
+    margin-left: 2px;
+}
+.powerTagContent{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 15px 0;
+}
+.powerTag{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 120px;
     height: 40px;
-    color: #333333;
+    border: 1px solid #000000;
+}
+.arrowBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+    height: 60px;
+}
+.arrow{
+    width: 60px;
+    height: 60px;
+    background-image: url(../../../assets/about/arrow.png);
+    background-size: 100% 100%;
+}
+.rightBox{
+    display: flex;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    width: 100%;
+}
+.leftBox{
+    justify-content: flex-start;
+
+    composes:rightBox;
+}
+.boxTime{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 15px;
+}
+.boxContent,.boxText{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }

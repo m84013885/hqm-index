@@ -6,7 +6,7 @@ import About from './about'
 
 const Content = () => {
   return (
-    <main>
+    <main className={`bgColor`}>
       <About />
     </main>
   )

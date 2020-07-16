@@ -4,7 +4,7 @@ import * as style from "./index.css"
 
 const Aside = () => {
   return (
-    <aside>
+    <aside className={`headerColor`}>
       <div className={style.header}></div>
       <div className={'maxHeight'}>
         <div className='list'>
